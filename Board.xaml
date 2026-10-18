@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Board 模板示例。
+  把这里的内容替换成你真实的 Board.xaml 即可 ——
+  服务本身只做一件事:把 %player_count% 换成当前在线人数。
+
+  支持变量:
+    %player_count%    当前在线人数(核心变量,功能二)
+    %player_max%      最大人数        (board.extras: true 时生效)
+    %motd%            服务器 MOTD
+    %version%         服务器版本
+    %ping_ms%         查询耗时(毫秒)
+    %server_edition%  java / bedrock
+  未定义的 %xxx% 会原样保留,不会被清空。
+-->
+<Board Name="title" Version="1.0" UpdateInterval="1">
+  <Group Name="default">
+    <Line Index="1" Content="§6服务器 §f| §a在线 §e%player_count% §7/ §f%player_max%" />
+    <Line Index="2" Content="§7版本 §f%version% §8· §7延迟 §f%ping_ms%ms" />
+    <Line Index="3" Content="§7当前人数 §f%player_count% §8人" />
+  </Group>
+</Board>

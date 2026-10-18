@@ -1,0 +1,62 @@
+# ============================================================
+#  BoardLive - 实时在线人数 Board.xaml 分发服务(独立应用)
+#  说明:所有相对路径都相对于本文件所在目录
+# ============================================================
+
+# ---------- 目标 Minecraft 服务器(功能一:getServerPlayerCount) ----------
+server:
+  # 目标服务器地址,支持 "host:port" 一行写法
+  address: "mlky.fun:25565"
+  # 也可以分开写(会覆盖 address 中对应的部分)
+  # host: "play.example.com"
+  # port: 25565
+  # 版本类型: java / bedrock / auto(auto = 先试 Java 版,失败再试基岩版)
+  edition: "auto"
+  # 连接超时(毫秒)
+  timeout-ms: 3000
+  # 失败重试次数(0 = 不重试)
+  retries: 1
+  # Java 版列表查询使用的协议号,一般不用改(47 = 1.8,任何版本都能查询)
+  protocol-version: 47
+
+# ---------- 对外 HTTP 服务(功能三:提供下载) ----------
+http:
+  # 监听地址,0.0.0.0 表示所有网卡
+  bind: "0.0.0.0"
+  # 下载端口
+  port: 8080
+  # Board.xaml 的下载路径(大小写不敏感;/board.xaml 与 /download 也始终可用)
+  path: "/Board.xaml"
+  # 浏览器下载时显示的文件名
+  download-name: "Board.xaml"
+  # 工作线程数
+  threads: 8
+
+# ---------- Board 模板(功能二:getBoardConfig) ----------
+board:
+  file: "Board.xaml"
+  # auto / UTF-8 / GBK / UTF-16 ...(auto 会按 BOM 与内容自动判断)
+  charset: "auto"
+  # 人数占位符
+  placeholder: "%player_count%"
+  # Board.xaml 被修改后自动重新加载,无需重启
+  reload-on-change: true
+  # 是否额外替换 %player_max% %motd% %version% %ping_ms% 等扩展占位符
+  extras: true
+
+# ---------- 刷新策略(功能四:下载即实时查询) ----------
+refresh:
+  # true = 每次下载请求都重新查询服务器(实时);false = 只用缓存
+  on-request: true
+  # 结果缓存毫秒数,0 = 不使用缓存
+  cache-ms: 0
+  # 并发去重窗口(毫秒):窗口内的并发下载复用同一次查询,避免打爆目标服务器
+  dedupe-ms: 200
+  # 查询失败时怎么办: zero / last-known / keep-placeholder / fail
+  on-error: "zero"
+  # on-error = zero,或还没有任何一次成功记录时使用的数字
+  fallback-player-count: 0
+
+# ---------- 日志 ----------
+logging:
+  debug: false

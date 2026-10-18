@@ -1,0 +1,36 @@
+<!--
+  Board 模板示例。
+  把这里的内容替换成你真实的 Board.xaml 即可 ——
+  服务本身只做一件事:把 %player_count% 换成当前在线人数。
+
+  支持变量:
+    %player_count%    当前在线人数(核心变量,功能二)
+    %player_max%      最大人数        (board.extras: true 时生效)
+    %motd%            服务器 MOTD
+    %version%         服务器版本
+    %ping_ms%         查询耗时(毫秒)
+    %server_edition%  java / bedrock
+  未定义的 %xxx% 会原样保留,不会被清空。
+-->
+<!-- 空域之巅主页  严禁盗用-->
+
+<local:MyCard Title="梦落空羽主页面板" Margin="0,0,0,15" CanSwap="False" IsSwapped="False">
+    <StackPanel Margin="25,40,23,15">
+        <TextBlock TextWrapping="Wrap" Margin="0,0,0,4" FontSize="23" Foreground="#8C7721" FontWeight="Bold"
+                    Text="欢迎使用梦落空羽主页面板！" />
+        <TextBlock TextWrapping="Wrap" Margin="0,0,0,5" FontSize="23" Foreground="#cdc528" FontWeight="Bold"
+                    Text="当前梦落空羽全服在线人数：%player_count%" />
+        <local:MyListItem Margin="-5,0,-5,0"
+            Logo="pack://application:,,,/images/Blocks/RedstoneLampOn.png"
+            Title="内存优化" Info="可以降低内存占用 电脑可能会瞬间卡一下" EventType="内存优化" Type="Clickable" />
+        <local:MyListItem Margin="-5,0,-5,0"
+            Logo="pack://application:,,,/images/Blocks/Fabric.png"
+            Title="启动{name}进入服务器" Info="使用当前版本启动MC并加入梦落空羽" EventType="启动游戏" EventData="\current|mlky.fun" Type="Clickable" />
+        <local:MyListItem Margin="-5,0,-5,0"
+            Logo="pack://application:,,,/images/Blocks/NeoForge.png"
+            Title="加入QQ群" Info="打开网站" EventType="打开网页" EventData="https://qm.qq.com/q/8IXei6HZx6" Type="Clickable" />
+        <local:MyListItem Margin="-5,0,-5,8"
+            Logo="pack://application:,,,/images/Blocks/CommandBlock.png"
+            Title="下载梦落空羽整合包" Info="梦落空羽整合包" EventType="打开网页" EventData="https://modrinth.com/modpack/client-for-dreamsfeather" Type="Clickable"/>
+    </StackPanel>
+</local:MyCard>
